@@ -1,0 +1,1 @@
+Scriptname AFT:TweakNukaWorldInterjections extends AFT:TweakInterjectionScript

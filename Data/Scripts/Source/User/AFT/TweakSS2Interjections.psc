@@ -1,0 +1,1 @@
+Scriptname AFT:TweakSS2Interjections extends AFT:TweakInterjectionScript
