@@ -529,7 +529,24 @@ Function OnGameLoaded()
 	else
 		Trace("Unable to Call TweakInterjectionFarHarborQuestScript.OnGameLoaded()")	
 	endif
-		
+	if Game.IsPluginInstalled("SS2_AFT.esp")
+		Quest pTweakSS2Interjections = Game.GetFormFromFile(0x000005C0, "SS2_AFT.esp") as Quest
+		AFT:TweakInterjectionSS2QuestScript pTweakInterjectionSS2QuestScript = pTweakSS2Interjections as AFT:TweakInterjectionSS2QuestScript
+		if pTweakInterjectionSS2QuestScript
+			pTweakInterjectionSS2QuestScript.OnGameLoaded(firstCall)
+		else
+			Trace("Unable to Call pTweakInterjectionSS2QuestScript.OnGameLoaded()")
+		endif
+	endif
+	if Game.IsPluginInstalled("AFTPlus_VSDC.esp")
+		Quest pTweakVSDCInterjections = Game.GetFormFromFile(0x0000001, "AFTPlus_VSDC.esp") as Quest
+		AFT:TweakInterjectionVSDCQuestScript pTweakInterjectionVSDCQuestScript = pTweakVSDCInterjections as AFT:TweakInterjectionVSDCQuestScript
+		if pTweakInterjectionVSDCQuestScript
+			pTweakInterjectionVSDCQuestScript.OnGameLoaded(firstCall)
+		else
+			Trace("Unable to Call pTweakInterjectionVSDCQuestScript.OnGameLoaded()")
+		endif
+	endif
 	allowdraw  = true
 	StartTimer(4.0,NO_ANIM_DRAW_FLOOD)
 	StartTimer(4.0,NO_ANIM_SHEATH_FLOOD)

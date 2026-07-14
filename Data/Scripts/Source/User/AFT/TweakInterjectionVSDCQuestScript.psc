@@ -1,7 +1,6 @@
-Scriptname AFT:TweakInterjectionSS2QuestScript extends Quest
+Scriptname AFT:TweakInterjectionVSDCQuestScript extends Quest
 
-TweakSS2Interjections				Property pTweakSS2Interjections                 Auto Const
-TweakSS2Ch2Interjections			Property pTweakSS2Ch2Interjections				Auto Const
+TweakVSDCStartGameEnabledInterjections	Property pTweakVSDCStartGameEnabledInterjections	Auto Const
 GlobalVariable						Property pTweakAllowMultInterjections 			Auto Const
 
 int NO_LOAD_FLOOD = 200 const
@@ -55,14 +54,13 @@ EndEvent
 
 Function UnRegisterInterjections()
 	Trace("UnRegisterInterjections")
-	pTweakSS2Interjections.UnRegisterInterjections()
-	pTweakSS2Ch2Interjections.UnRegisterInterjections()
+	pTweakVSDCStartGameEnabledInterjections.UnRegisterInterjections()
+
 EndFunction
 
 Function RegisterInterjections()
 	if (1.0 == pTweakAllowMultInterjections.GetValue())	
-		pTweakSS2Interjections.RegisterInterjections()
-		pTweakSS2Ch2Interjections.RegisterInterjections()
-		;debug.notification("registering ss2 interjections")
+		pTweakVSDCStartGameEnabledInterjections.RegisterInterjections()
+		;debug.notification("registering VSDC")
 	endif
 EndFunction
