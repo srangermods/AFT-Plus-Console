@@ -3354,3 +3354,7 @@ EndFunction
 Function ForceToStateNone()
 	GoToState(None)
 EndFunction
+
+bool Function isAFTPlusFollowerScriptActive() Global
+	return true;
+EndFunction

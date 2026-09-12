@@ -1260,7 +1260,7 @@ Function UnequipAllGear(bool InvokedFromFurniture=false, bool startManaging=fals
 	BumpArmorAI()
 	managed = true
 	npc.AddToFaction(pTweakManagedOutfit)
-	RemoveDefaultWeapon()
+	;RemoveDefaultWeapon()
 	
 	CurrentOutfit.clear()
 	myHead.Clear()
@@ -3281,51 +3281,79 @@ Function RestoreDefaultWeapon()
 	
 	if (base == Game.GetForm(0x00079249) as ActorBase)     ; 1 ---=== Cait ===---	
 		Trace("Cait Detected.")
-		npc.AddItem(Game.GetForm(0x0005DF30) as Weapon)
+		if npc.GetItemCount(Game.GetForm(0x0005DF30) as Weapon) < 1
+			npc.AddItem(Game.GetForm(0x0005DF30) as Weapon)
+		endif
 	; elseif (base == Game.GetForm(0x000179FF) as ActorBase) ; 2 ---=== Codsworth ===---	
 	;	Trace("Codsworth Detected.")
 	elseif (base == Game.GetForm(0x00027686) as ActorBase) ; 3 ---=== Curie ===---
 		Trace("Curie Detected.")
 		Quest COMCurieQuest = Game.GetForm(0x0016454E) as Quest
 		If COMCurieQuest && COMCurieQuest.GetStageDone(300)
-			npc.AddItem(Game.GetForm(0x0022CC13) as Weapon)			
+			if npc.GetItemCount(Game.GetForm(0x0022CC13) as Weapon) < 1
+				npc.AddItem(Game.GetForm(0x0022CC13) as Weapon)
+			endif			
 		endif		
 	elseif (base == Game.GetForm(0x00027683) as ActorBase) ; 4 ---=== Danse ===---
 		Trace("Danse Detected.")
-		npc.AddItem(Game.GetForm(0x0005BBA6) as Weapon)
+		if npc.GetItemCount(Game.GetForm(0x0005BBA6) as Weapon) < 1
+			npc.AddItem(Game.GetForm(0x0005BBA6) as Weapon)
+		endif
 	elseif (base == Game.GetForm(0x00045AC9) as ActorBase) ; 5 ---=== Deacon ===---
 		Trace("Deacon Detected.")
-		npc.AddItem(Game.GetForm(0x00215CE3) as Weapon)
+		if npc.GetItemCount(Game.GetForm(0x00215CE3) as Weapon) < 1
+			npc.AddItem(Game.GetForm(0x00215CE3) as Weapon)
+		endif
 	; elseif (base == Game.GetForm(0x0001D15C) as ActorBase) ; 6 ---=== Dogmeat ===---	
 	; 	Trace("Dogmeat Detected.")
 	elseif (base == Game.GetForm(0x00022613) as ActorBase) ; 7 ---=== Hancock ===---	
 		Trace("Hancock Detected.")
-		npc.AddItem(Game.GetForm(0x00062AA4) as Weapon)
-		npc.AddItem(Game.GetForm(0x00062AA3) as Weapon)
+		if npc.GetItemCount(Game.GetForm(0x00062AA4) as Weapon) < 1
+			npc.AddItem(Game.GetForm(0x00062AA4) as Weapon)
+		endif
+		if npc.GetItemCount(Game.GetForm(0x00062AA3) as Weapon) < 1
+			npc.AddItem(Game.GetForm(0x00062AA3) as Weapon)
+		endif
 	elseif (base == Game.GetForm(0x0002740E) as ActorBase) ; 8 ---=== MacCready ===---		
 		Trace("MacCready Detected.")
-		npc.AddItem(Game.GetForm(0x0005BBA4) as Weapon)
+		if npc.GetItemCount(Game.GetForm(0x0005BBA4) as Weapon) < 1
+			npc.AddItem(Game.GetForm(0x0005BBA4) as Weapon)
+		endif
 	elseif (base == Game.GetForm(0x00002F24) as ActorBase) ; 9 ---=== Nick Valentine ===---	
 		Trace("Nick Detected.")
-		npc.AddItem(Game.GetForm(0x0005BBA7) as Weapon)
+		if npc.GetItemCount(Game.GetForm(0x0005BBA7) as Weapon) < 1
+			npc.AddItem(Game.GetForm(0x0005BBA7) as Weapon)
+		endif
 	elseif (base == Game.GetForm(0x00002F1E) as ActorBase) ; 10 ---=== Piper ===---	
 		Trace("Piper Detected.")
-		npc.AddItem(CompPiper10mm)
+		if npc.GetItemCount(CompPiper10mm) < 1
+			npc.AddItem(CompPiper10mm)
+		endif
 	elseif (base == Game.GetForm(0x00019FD9) as ActorBase) ; 11 ---=== Preston ===---	
 		Trace("Preston Detected.")	
-		npc.AddItem(Game.GetForm(0x00062AA6) as Weapon)
+		if npc.GetItemCount(Game.GetForm(0x00062AA6) as Weapon) < 1
+			npc.AddItem(Game.GetForm(0x00062AA6) as Weapon)
+		endif
 	elseif (base == Game.GetForm(0x00027682) as ActorBase) ; 12 ---=== Strong ===---
 		Trace("Strong Detected.")
-		npc.AddItem(Game.GetForm(0x0005DF2E) as Weapon)
+		if npc.GetItemCount(Game.GetForm(0x0005DF2E) as Weapon) < 1
+			npc.AddItem(Game.GetForm(0x0005DF2E) as Weapon)
+		endif
 	elseif (base == Game.GetForm(0x000BBEE6) as ActorBase) ; 13 ---=== X6-88 ===---		
 		Trace("X6-88 Detected.")
-		npc.AddItem(Game.GetForm(0x00215CE4) as Weapon)
+		if npc.GetItemCount(Game.GetForm(0x00215CE4) as Weapon) < 1
+			npc.AddItem(Game.GetForm(0x00215CE4) as Weapon)
+		endif
 	elseif (base == pTweakCompanionNate)	
 		Trace("Nate Detected")	
-		npc.AddItem(CompPiper10mm)
+		if npc.GetItemCount(CompPiper10mm) < 1
+			npc.AddItem(CompPiper10mm)
+		endif
 	elseif (base == pTweakCompanionNora)
 		Trace("Nora Detected")
-		npc.AddItem(CompPiper10mm)
+		if npc.GetItemCount(CompPiper10mm) < 1
+			npc.AddItem(CompPiper10mm)
+		endif
 	else	
 		if (ActorBaseID > 0x00ffffff)
 		
@@ -3346,13 +3374,17 @@ Function RestoreDefaultWeapon()
 				Trace("LongFellow Detected")
 				Weapon DLC03_CompLeverGun = Game.GetFormFromFile(0x0104D39B,"DLCCoast.esm") as Weapon
 				if DLC03_CompLeverGun
-					npc.AddItem(DLC03_CompLeverGun)
+					if npc.GetItemCount(DLC03_CompLeverGun) < 1
+						npc.AddItem(DLC03_CompLeverGun)
+					endif
 				endif				
 			elseif 0x0000881D == ActorBaseMask ; Porter Gage
 				Trace("Porter Gage Detected")
 				Weapon DLC04COMGageHandMadeGun = Game.GetFormFromFile(0x010496EA,"DLCNukaWorld.esm") as Weapon
 				if DLC04COMGageHandMadeGun
-					npc.AddItem(DLC04COMGageHandMadeGun)
+					if npc.GetItemCount(DLC04COMGageHandMadeGun) < 1
+						npc.AddItem(DLC04COMGageHandMadeGun)
+					endif
 				endif
 			endif
 		endif								

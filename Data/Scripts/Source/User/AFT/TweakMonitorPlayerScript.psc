@@ -114,6 +114,17 @@ Event Actor.OnPlayerLoadGame(Actor akSender)
 		InitializationCheck()
 		return
 	endif
+	Var result = Utility.CallGlobalFunction("followersscript", "isAFTPlusFollowerScriptActive",  new Var[0])
+	bool aftPlusFollowersScriptExists  = result as bool
+	if aftPlusFollowersScriptExists
+		;debug.notification("Found AFT Plus FollowersScript")
+	else
+		debug.messagebox("The FollowersScript.pex in AFT Plus is not being loaded in your load order. Please exit the game and fix your load order so AFT Plus wins this conflict and roll back your save.")
+	endif
+	Alias companion10Alias = pFollowers.getAlias(28)
+	if companion10Alias == None
+		debug.messagebox("AFT Plus is not winning the vanilla Followers quest record in your load order. Please exit the game and fix your load order so AFT Plus wins this conflict and roll back your save.")
+	endif
 	StartTimer(4,NO_LG_FLOOD_INIT)	
 EndEvent
 

@@ -103,6 +103,21 @@ Bool Function EnableAFTSpouse()
 	endif
 EndFunction
 
+Function checkAFTPlusWinningOverrides()
+	Var result = Utility.CallGlobalFunction("followersscript", "isAFTPlusFollowerScriptActive",  new Var[0])
+	bool aftPlusFollowersScriptExists  = result as bool
+	if aftPlusFollowersScriptExists
+		;debug.notification("Found AFT Plus FollowersScript")
+	else
+		debug.messagebox("The FollowersScript.pex in AFT Plus is not being loaded in your load order. Please exit the game and fix your load order so AFT Plus wins this conflict and roll back your save.")
+	endif
+	Quest pFollowers = Game.GetFormFromFile(0x000289E4,"Fallout4.esm") as Quest
+	Alias companion10Alias = pFollowers.getAlias(28)
+	if companion10Alias == None
+		debug.messagebox("AFT Plus is not winning the vanilla Followers quest record in your load order. Please exit the game and fix your load order so AFT Plus wins this conflict and roll back your save..")
+	endif
+EndFunction
+
 Function endSpouseQuest()
 	isAFTSpouseEnabled = false
 	Self.stop()
@@ -111,6 +126,7 @@ EndFunction
 Event OnMenuOpenCloseEvent(string asMenuName, bool abOpening)
 	If (asMenuName == "LooksMenu" && abOpening == False)
 		UnRegisterForMenuOpenCloseEvent("LooksMenu")
+		checkAFTPlusWinningOverrides()
 		if !EnableAFTSpouse()
 			endSpouseQuest()
 			return
@@ -126,6 +142,7 @@ Event OnQuestInit()
 	if (MQ101.GetCurrentStageID() >= 200 )
 		trace("mq101 running and past stage 200")
 		UnRegisterForMenuOpenCloseEvent("LooksMenu")
+		checkAFTPlusWinningOverrides()
 		if isAFTSpouseEnabled
 			if !EnableAFTSpouse()
 				endSpouseQuest()
@@ -135,6 +152,7 @@ Event OnQuestInit()
 	Elseif MQ102.GetCurrentStageID() >= 10
 		UnRegisterForMenuOpenCloseEvent("LooksMenu")
 		trace("MQ101 not running, but Mq102 already started")
+		checkAFTPlusWinningOverrides()
 		if !EnableAFTSpouse()
 			endSpouseQuest()
 			return
